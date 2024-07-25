@@ -7,6 +7,9 @@ const ChatContext = createContext();
 export const ChatProvider = ({ children }) => {
   const chat = async (message) => {
     setLoading(true);
+    const userMessage = { text: message, sender: 'user' };
+    setMessageHistory((messageHistory) => [...messageHistory, ...[userMessage]]);
+    console.log('history', messageHistory);
     const data = await fetch(`${backendUrl}/chat`, {
       method: "POST",
       headers: {
@@ -15,13 +18,22 @@ export const ChatProvider = ({ children }) => {
       body: JSON.stringify({ message }),
     });
     const resp = (await data.json()).messages;
+    // Update messages and messageHistory
+    resp.forEach(msg => {
+      msg.sender = 'bot';
+    });
     setMessages((messages) => [...messages, ...resp]);
+    setMessageHistory((messageHistory) => [...messageHistory, ...resp]);
+    console.log('history', messageHistory);
     setLoading(false);
   };
+
   const [messages, setMessages] = useState([]);
+  const [messageHistory, setMessageHistory] = useState([]);
   const [message, setMessage] = useState();
   const [loading, setLoading] = useState(false);
   const [cameraZoomed, setCameraZoomed] = useState(true);
+
   const onMessagePlayed = () => {
     setMessages((messages) => messages.slice(1));
   };
@@ -43,6 +55,7 @@ export const ChatProvider = ({ children }) => {
         loading,
         cameraZoomed,
         setCameraZoomed,
+        messageHistory,
       }}
     >
       {children}
