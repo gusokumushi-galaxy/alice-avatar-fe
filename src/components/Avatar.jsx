@@ -108,7 +108,7 @@ let setupMode = false;
 
 export function Avatar(props) {
   const { nodes, materials, scene } = useGLTF(
-    "/models/669f7eec3d2df5297dfb4e74.glb"
+    "/models/alice.glb"
   );
 
   const { message, onMessagePlayed, chat } = useChat();
@@ -130,10 +130,11 @@ export function Avatar(props) {
     audio.onended = onMessagePlayed;
   }, [message]);
 
-  const { animations } = useGLTF("/models/animations.glb");
+  const { animations } = useGLTF("/models/animations-alice.glb");
 
   const group = useRef();
   const { actions, mixer } = useAnimations(animations, group);
+  // console.log(animations)
   const [animation, setAnimation] = useState(
     animations.find((a) => a.name === "Idle") ? "Idle" : animations[0].name // Check if Idle animation exists otherwise use first animation
   );
@@ -374,5 +375,5 @@ export function Avatar(props) {
   );
 }
 
-useGLTF.preload("/models/669f7eec3d2df5297dfb4e74.glb");
-useGLTF.preload("/models/animations.glb");
+useGLTF.preload("/models/glb.glb");
+useGLTF.preload("/models/animations-alice.glb");

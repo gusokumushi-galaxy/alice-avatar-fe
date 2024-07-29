@@ -57,3 +57,17 @@ body.greenScreen {
   bottom: 0px;
   box-sizing: border-box; /* Ensure padding and border are included in the element's total width and height */
 }
+
+.send-button {
+  width: 5px; /* Minimal width */
+  height: 5px; /* Minimal height */
+  padding: 0; /* Remove padding */
+  margin: 0; /* Remove margin */
+  opacity: 0.1; /* Make the button invisible */
+  border: none; /* Remove any border */
+  box-shadow: none; /* Remove any shadow effects */
+  transition: none; /* Disable transition effects */
+  position: absolute; /* Remove it from the document flow */
+  bottom: 10; /* Position it off-screen or adjust as needed */
+  right: 10; /* Position it off-screen or adjust as needed */
+}
