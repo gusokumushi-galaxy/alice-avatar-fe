@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 
-const backendUrl = "http://localhost:3000";
+const backendUrl = "https://578a-180-190-141-2.ngrok-free.app";
 
 const ChatContext = createContext();
 

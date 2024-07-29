@@ -16,7 +16,12 @@ export const UI = ({ hidden, ...props }) => {
   }, [messageHistory]);
 
   const sendMessage = () => {
-    const text = input.current.value;
+    // const text = input.current.value;
+    const text = [{
+    "text": "Kuri Kuri Kuri Kuri Kuri",
+    "facialExpression": "smile",
+    "animation": "Talking_0"
+  }]
     if (!loading && !message) {
       chat(text);
       input.current.value = "";
